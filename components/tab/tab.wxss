@@ -1,0 +1,20 @@
+/* components/tab/tab.wxss */
+.p_tab {
+}
+.tab_item {
+  position: relative;
+  margin-right: 50rpx;
+  display: inline-block;
+}
+.active_tab {
+  color:  rgb(102, 216, 25);
+}
+.line {
+  height: 5rpx;
+  width: 40rpx;
+  position: absolute;
+  bottom: -5rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(102, 216, 25);
+}

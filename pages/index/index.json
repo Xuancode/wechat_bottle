@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "p-tab": "/components/tab/tab"
+  }
+}

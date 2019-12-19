@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="container">
+
+<!-- 轮播图 -->
+  <view class='carousel'> 
+    <swiper class='carousel_swiper' indicator-dots="true" indicator-color="#f4f4f4" indicator-active-color="#4eb8b8" autoplay="true" interval='2000' circular='true'>
+      <block wx:for="{{carouselList}}" wx:key="key">
+        <swiper-item bindtap='clickBanner' data-url='{{item}}'>
+          <image class="carouselImg" src='{{item}}' mode='aspectFill' ></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- tab栏 -->
+  <p-tab tabList="{{tabList}}"></p-tab>
+
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+</view>
