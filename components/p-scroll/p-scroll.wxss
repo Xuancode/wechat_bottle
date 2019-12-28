@@ -1,0 +1,32 @@
+/* components/p-sroll/p-scroll.wxss */
+.scroll_view {
+  width: 100%;
+}
+.li {
+  /* height: 200rpx; */
+  background-color: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+.src_pic {
+  height: 250rpx;
+}
+.pic_view {
+  text-align: center;
+  /* background-color: black; */
+  font-size: 0;
+}
+.text_title {
+  font-size: 36rpx;
+  display: inline-block;
+}
+.nick_name {
+  display: inline-block;
+  margin-bottom: 12rpx;
+  margin-top: 12rpx;
+  margin-right: 12rpx;
+  color: #555;
+}
+.text_content {
+  color: #999;
+}

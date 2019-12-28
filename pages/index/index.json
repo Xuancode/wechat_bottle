@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "p-tab": "/components/tab/tab"
-  }
+    "p-tab": "/components/tab/tab",
+    "p-scroll": "/components/p-scroll/p-scroll"
+  },
+  "enablePullDownRefresh": false
 }

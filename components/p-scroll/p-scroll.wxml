@@ -1,0 +1,16 @@
+<!--components/p-sroll/p-scroll.wxml-->
+<!-- 暂时不使用scrollview -->
+<view class="scroll_view">
+  <view class="li" wx:for="{{data_list}}" bindtap="refresh" wx:key="key">
+    <view>
+      <text class="text_title">{{item.title}}</text>    
+    </view>
+    <view>
+      <text class="nick_name">{{item.editor}}:</text>
+      <text class="text_content">{{item.reply}}</text>
+    </view>
+    <view class="pic_view">
+      <image class="src_pic" src="{{item.url}}"  mode="aspectFit"></image>
+    </view>
+  </view>
+</view>

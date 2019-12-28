@@ -1,10 +1,18 @@
 /* components/tab/tab.wxss */
+
 .p_tab {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  padding-bottom: 5rpx;
+  display: flex;
 }
 .tab_item {
   position: relative;
-  margin-right: 50rpx;
+  /* margin-right: 50rpx; */
   display: inline-block;
+  flex: 1;
 }
 .active_tab {
   color:  rgb(102, 216, 25);

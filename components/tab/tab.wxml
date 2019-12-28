@@ -1,7 +1,7 @@
 <!--components/tab/tab.wxml-->
 <view class="p_tab">
   <view class="tab_item {{item.index == currentTab ? 'active_tab' : ''}}" bindtap="clickTab" data-index="{{item.index}}" wx:for="{{tabList}}" wx:key="key">
-    {{item.label}}
+    <text>{{item.label}}</text>
     <view wx:if="{{item.index == currentTab}}" class="line"></view>
   </view>
 </view>
