@@ -9,6 +9,17 @@ App({
     // 登录
     wx.login({
       success: res => {
+        console.log(res.code)
+        wx.request({
+          url: this.globalData.hostPort + '/api/v1/session',
+          data: {
+            wxcode: res.code
+          },
+          method: 'POST',
+          success: res => {
+            console.log(res)
+          }
+        })
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -36,5 +47,6 @@ App({
   globalData: {
     userInfo: null,
     currentTab: 0,
+    hostPort: 'http://localhost:7001'
   }
 })
