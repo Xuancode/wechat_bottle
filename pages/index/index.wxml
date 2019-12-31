@@ -1,18 +1,36 @@
-<!--index.wxml-->
-<view class="container">
-  <!-- tab栏 -->
-  <p-tab style="width: 100%" tabList="{{tabList}}"></p-tab>
-  <!-- scroll-wive组件 -->
-  <p-scroll class="p_scroll"></p-scroll>
-
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
+<view class="top-wrap">
+	<tab id="category"
+		 tab-data="{{categoryMenu}}"
+		 tab-cur="{{categoryCur}}"
+		 size="{{80}}"
+		 scroll="{{true}}"
+		 bindchange="toggleCategory">
+	</tab>
 </view>
+
+<swiper current="{{categoryCur}}" duration="{{duration}}" bindanimationfinish="swipeChange">
+	<swiper-item wx:for="{{categoryData}}" wx:key="{{index}}">
+		<scroll requesting="{{item.requesting}}"
+				end="{{item.end}}"
+				empty-show="{{item.emptyShow}}"
+				list-count="{{item.listData.length}}"
+				has-top="{{true}}"
+				refresh-size="{{80}}"
+				bind:refresh="refresh"
+				bind:more="more">
+				<view class="cells">
+					<!-- <view class="cell"
+						  wx:for="{{item.listData}}"
+						  wx:key="{{index}}">
+						<view class="cell__hd">
+						</view>
+						<view class="cell__bd">
+							<view class="name">{{item.title}}</view>
+							<view class="des">{{item.description}}</view>
+						</view>
+					</view> -->
+          <p-list></p-list>
+				</view>
+		</scroll>
+	</swiper-item>
+</swiper>

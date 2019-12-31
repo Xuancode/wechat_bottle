@@ -1,6 +1,7 @@
 /* components/p-sroll/p-scroll.wxss */
 .scroll_view {
   width: 100%;
+  background-color: #f7f7f7;
 }
 .li {
   /* height: 200rpx; */
