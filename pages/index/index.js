@@ -227,10 +227,36 @@ Page({
 		this.getList('more', this.getCurrentData(this.data.categoryCur).page);
 	},
 	onLoad() {
+    // // 获取用户信息部分
+    // if (!app.globalData.userInfo) {
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // } else if (this.data.canIUse) {
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // } else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+      
+    // }
+
+
+
 		// 第一次加载延迟 350 毫秒 防止第一次动画效果不能完全体验
 		setTimeout(() => {
 			this.getList('refresh', pageStart);
 		}, 350);
-	}
+	},
+
+  getUserInfo(res) {
+    console.log(res)
+  }
 });
 

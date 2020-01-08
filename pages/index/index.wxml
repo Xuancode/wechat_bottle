@@ -9,7 +9,7 @@
 </view>
 
 <swiper current="{{categoryCur}}" duration="{{duration}}" bindanimationfinish="swipeChange">
-	<swiper-item wx:for="{{categoryData}}" wx:key="{{index}}">
+	<swiper-item wx:for="{{categoryData}}" wx:key="index">
 		<scroll requesting="{{item.requesting}}"
 				end="{{item.end}}"
 				empty-show="{{item.emptyShow}}"
@@ -18,7 +18,10 @@
 				refresh-size="{{80}}"
 				bind:refresh="refresh"
 				bind:more="more">
-				<view class="cells">
+				<view class="cells" 
+          open-type="getUserInfo"
+          bindgetuserinfo="getUserInfo"
+        >
 					<!-- <view class="cell"
 						  wx:for="{{item.listData}}"
 						  wx:key="{{index}}">
@@ -29,6 +32,10 @@
 							<view class="des">{{item.description}}</view>
 						</view>
 					</view> -->
+          <button
+            open-type="getUserInfo"
+            bindgetuserinfo="getUserInfo"
+          >吃了吗</button>
           <p-list></p-list>
 				</view>
 		</scroll>

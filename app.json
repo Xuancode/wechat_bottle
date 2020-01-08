@@ -20,7 +20,7 @@
       {
         "pagePath": "pages/index/index",
         "iconPath": "img/home.png",
-        "selectedIconPath": "img/achome.png",
+        "selectedIconPath": "img/acHome.png",
         "text": "首页"
       },
       {
