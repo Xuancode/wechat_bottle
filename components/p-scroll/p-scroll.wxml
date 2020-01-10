@@ -5,12 +5,12 @@
     <view>
       <text class="text_title">{{item.title}}</text>    
     </view>
-    <view>
+    <view wx:if="{{item.reply}}">
       <text class="nick_name">{{item.editor}}:</text>
       <text class="text_content">{{item.reply}}</text>
     </view>
     <view class="pic_view">
-      <image class="src_pic" src="{{item.url}}"  mode="aspectFit"></image>
+      <image class="src_pic" src="{{item.src_img}}"  mode="aspectFit"></image>
     </view>
   </view>
 </view>

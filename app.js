@@ -1,4 +1,7 @@
 //app.js
+
+import apis from './apis/apis.js'
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,19 +13,25 @@ App({
     wx.login({
       success: res => {
         console.log(res.code)
-        wx.request({
-          url: this.globalData.hostPort + '/api/v1/session',
-          data: {
-            wxcode: res.code
-          },
-          method: 'POST',
-          success: res => {
-            console.log(res)
-          }
+        
+        this.apis.login({ wxcode: res.code}).then(res => {
+          // 存储token
+          wx.setStorage({
+            "key": 'ps_token',
+            "data": res.data.token,
+            success: res => {
+              console.log(res)
+            },
+            fail: (err) => {
+              console.log(err)
+            }
+          })
+        }).catch(err => {
+          console.log(err)
         })
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -52,6 +61,8 @@ App({
       }
     })
   },
+  apis: new apis(),
+
   globalData: {
     userInfo: null,
     currentTab: 0,
