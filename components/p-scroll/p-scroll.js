@@ -58,12 +58,11 @@ Component({
   },
   lifetimes: {
     ready() {
-      console.log(this.properties.listType)
-      app.apis.getList({ type: this.properties.listType, page: 1, size: 10 }).then(res => {
+      app.apis.getList( this.properties.listType, 1, 10).then(res => {
         this.setData({
           data_list: res.data
         })
-        console.log(res)
+        console.log(res.data)
       })
     }
   },

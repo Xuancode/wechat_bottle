@@ -57,6 +57,19 @@ Component({
 		 */
 		scrollByIndex(tabCur, needTransition = true) {
       console.log(tabCur)
+      if (tabCur ==2) {
+        console.log(tabCur)
+        wx.navigateTo({
+          url: '/pages/newList/newList',
+          success: function(res) {
+            console.log(res)
+          },
+          fail: function(err) {
+            console.log(err)
+          },
+          complete: function(res) {},
+        })
+      }
 			let item = this.data.tabItems[tabCur];
 			if (!item) return;
 			let itemWidth = item.width || 0,

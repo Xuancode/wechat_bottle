@@ -1,0 +1,21 @@
+<!--pages/newList/newList.wxml-->
+<view class="new_list">
+  <head-form></head-form>
+  <view class="inner_view">
+    <view class="input_area">
+      <textarea 
+        bindblur="bindTextAreaBlur" 
+        placeholder="来吧，尽情发挥吧..." 
+        auto-focus
+        cursor-spacing="30"
+        show-confirm-bar 
+        maxlength="500"
+      />
+    </view>
+    <view class="img_content">
+      <view class="line"></view>
+      <image wx:for="{{upImg}}" class="up_img" src="{{item}}" wx:key="key"></image>
+      <image class="up_img img_btn" bindtap="getPhoto" src="/img/icon/upImg.png"></image>
+    </view>
+  </view>
+</view>

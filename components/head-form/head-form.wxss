@@ -1,0 +1,26 @@
+/* components/head-form/head-form.wxss */
+.head_form {
+  height: 72rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 11;
+}
+.confirm {
+  display: inline-block;
+  /* width: 200rpx; */
+  padding: 8rpx 18rpx;
+  color: #fff;
+  background-color: #1AAD19;
+  border-radius: 5rpx 5rpx;
+  margin-left: 530rpx;
+
+  /* float: right; */
+}
+.cancel {
+  /* float: left; */
+  display: inline-block;
+  /* width: 200rpx; */
+  padding: 8rpx 18rpx;
+}

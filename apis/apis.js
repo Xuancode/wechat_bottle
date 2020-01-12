@@ -37,7 +37,7 @@ class apis {
    * 推荐列表
    */
   getList(type = 0, page = 1, size = 10) {
-    let data = { type, page: page, size: size }
+    let data = { type: type, page: page, size: size }
     return this._request.$get(this._baseUrl + 'api/v1/list', data).then(res => res.data)
   }
 
