@@ -1,7 +1,7 @@
 //app.js
 
 import apis from './apis/apis.js'
-
+console.log(apis)
 App({
   onLaunch: function () {
     // 展示本地存储能力

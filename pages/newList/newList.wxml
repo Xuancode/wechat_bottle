@@ -1,10 +1,10 @@
 <!--pages/newList/newList.wxml-->
 <view class="new_list">
-  <head-form></head-form>
+  <head-form bindcustomevent="announce"></head-form>
   <view class="inner_view">
     <view class="input_area">
       <textarea 
-        bindblur="bindTextAreaBlur" 
+        bindblur="" 
         placeholder="来吧，尽情发挥吧..." 
         auto-focus
         cursor-spacing="30"

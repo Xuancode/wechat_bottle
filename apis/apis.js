@@ -42,6 +42,14 @@ class apis {
   }
 
   /**
+   * 获取qiniu云token
+   */
+  getQiniuToken() {
+    return this._request.$get(this._baseUrl + 'api/v1/qiniu').then(res => res.data)
+  }
+
+
+  /**
    * 获取所有课程
    */
   getCourseList(page = 1, size = 10, key = null) {

@@ -1,5 +1,19 @@
 // created by gpake
+/**
+ * 改动点：
+ * 1、修改case ECN 为华南节点
+ * 2、wx.request请求使用项目封装的apis，以使用token. 目前url写到apis里，官方配置无效
+ */
+// 已经进行定制化
+import apis from '../apis/apis.js'
+// console.log(1)
+// import apis from '/apis/apis.js'
+// api = new apis()
+
+
 (function() {
+    // import apis from '../apis/apis.js'
+    // console.log(1)
 
 var config = {
     qiniuRegion: '',
@@ -98,6 +112,8 @@ function doUpload(filePath, success, fail, options, progress, cancelTask, before
         name: 'file',
         formData: formData,
         success: function (res) {
+          console.log(res)
+          
           var dataString = res.data
         //   // this if case is a compatibility with wechat server returned a charcode, but was fixed
         //   if(res.data.hasOwnProperty('type') && res.data.type === 'Buffer'){
@@ -141,10 +157,11 @@ function doUpload(filePath, success, fail, options, progress, cancelTask, before
 }
 
 function getQiniuToken(callback) {
-  wx.request({
-    url: config.qiniuUploadTokenURL,
-    success: function (res) {
-      var token = res.data.uptoken;
+  const api = new apis()
+  
+  api.getQiniuToken().then(res => {
+    console.log(res)
+    var token = res.uptoken;
       if (token && token.length > 0) {
         config.qiniuUploadToken = token;
         if (callback) {
@@ -153,22 +170,38 @@ function getQiniuToken(callback) {
       } else {
         console.error('qiniuUploader cannot get your token, please check the uptokenURL or server')
       }
-    },
-    fail: function (error) {
-      console.error('qiniu UploadToken is null, please check the init config or networking: ' + error);
-    }
+  }, err => {
+    console.error('qiniu UploadToken is null, please check the init config or networking: ' + err);
   })
+  
+  // wx.request({
+  //   url: config.qiniuUploadTokenURL,
+  //   success: function (res) {
+  //     var token = res.data.uptoken;
+  //     if (token && token.length > 0) {
+  //       config.qiniuUploadToken = token;
+  //       if (callback) {
+  //           callback();
+  //       }
+  //     } else {
+  //       console.error('qiniuUploader cannot get your token, please check the uptokenURL or server')
+  //     }
+  //   },
+  //   fail: function (error) {
+  //     console.error('qiniu UploadToken is null, please check the init config or networking: ' + error);
+  //   }
+  // })
 }
 
 function uploadURLFromRegionCode(code) {
     var uploadURL = null;
     switch(code) {
-        case 'ECN': uploadURL = 'https://up.qiniup.com'; break;
-        case 'NCN': uploadURL = 'https://up-z1.qiniup.com'; break;
-        case 'SCN': uploadURL = 'https://up-z2.qiniup.com'; break;
-        case 'NA': uploadURL = 'https://up-na0.qiniup.com'; break;
-        case 'ASG': uploadURL = 'https://up-as0.qiniup.com'; break;
-        default: console.error('please make the region is with one of [ECN, SCN, NCN, NA, ASG]');
+      case 'ECN': uploadURL = 'https://up-z2.qiniup.com'; break;   // 原本为up.qiniup.com， 出了400bug， 改为华南 up-z2.qiniup.com
+      case 'NCN': uploadURL = 'https://up-z1.qiniup.com'; break;
+      case 'SCN': uploadURL = 'https://up-z2.qiniup.com'; break;
+      case 'NA': uploadURL = 'https://up-na0.qiniup.com'; break;
+      case 'ASG': uploadURL = 'https://up-as0.qiniup.com'; break;
+      default: console.error('please make the region is with one of [ECN, SCN, NCN, NA, ASG]');
     }
     return uploadURL;
 }

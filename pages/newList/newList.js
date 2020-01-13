@@ -1,5 +1,6 @@
 // pages/newList/newList.js
 const qiniuUploader = require("../../utils/qiniuUploader");
+// qiniuUploader.init()
 Page({
 
   /**
@@ -23,36 +24,86 @@ Page({
         })
         // console
         console.log(tempFilePaths)
-        this.upImg(tempFilePaths)
       },
       fail(err) {
         console.log(err)
       }
     })
   },
-  upImg(filePath) {
-    const token = wx.getStorageSync('qiNiuToken')
-    console.log(token)
-    qiniuUploader.upload( filePath[0], (res) => {
+  announce() {
+    console.log("点击右键")
+    
+    this.upLoadImg(this.data.upImg, wx.getStorageSync('qiNiuToken'))
+  },
+  upLoadImg(filePaths, token) {
+    let uplist = []
+    for (let index in filePaths) {
+      const path = filePaths[index]
+      let promise = new Promise((resolve, reject) => {
 
-    }), (err) => {
+        qiniuUploader.upload( filePaths[0], (res) => {
+          console.log("成功了")
+          resolve(res.key)
+        }, (err) => {
+          console.log("失败了")
+          reject(error)
+        }, {
+          uptoken: token,
+          uptokenURL: true, // 修改过，地址写到apis里面
+          region: 'ECN',
+          domain: 'q3zie9bz3.bkt.clouddn.com',
+          key: filePaths[index],
 
-    }, {
-      region: 'ECN',
-      domain: 'ps-please-dev.s3-cn-south-1.qiniucs.com',
-      key: filePath[0],
-      uptoken: token
-    }, (res) => {
-      console.log('上传进度', res.progress)
-      console.log('已经上传的数据长度', res.totalBytesSent)
-      console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
-    },() => {
-      console.log('取消上传')
-    }, () => {
-      console.log('上传前执行的操作')
-    }, (err) => {
-      console.log('complete')
+        }, (res) => {
+          console.log('上传进度', res.progress)
+          console.log('已经上传的数据长度', res.totalBytesSent)
+          console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+        },() => {
+          console.log('取消上传')
+        }, () => {
+          console.log('上传前执行的操作')
+        }, (err) => {
+          console.log('complete')
+        })
+
+      })
+      uplist.push(promise)
     }
+
+    Promise.all(uplist).then((resultList) => {
+      console.log(resultList)
+    }, error => {
+      console.log(error)
+      wx.showToast({
+        title: '图片上传失败',
+        icon: 'none',
+        duration: 2000,
+      })
+    })
+    // const token = wx.getStorageSync('qiNiuToken')
+    // console.log(token)
+    // qiniuUploader.upload( filePath[0], (res) => {
+    //   console.log("成功了")
+    // }, (err) => {
+    //   console.log("失败了")
+    // }, {
+    //   uptoken: wx.getStorageSync('qiNiuToken'),
+    //   uptokenURL: true, // 修改过，地址写到apis里面
+    //   region: 'ECN',
+    //   domain: 'q3zie9bz3.bkt.clouddn.com',
+    //   key: filePath[0],
+      
+    // }, (res) => {
+    //   console.log('上传进度', res.progress)
+    //   console.log('已经上传的数据长度', res.totalBytesSent)
+    //   console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+    // },() => {
+    //   console.log('取消上传')
+    // }, () => {
+    //   console.log('上传前执行的操作')
+    // }, (err) => {
+    //   console.log('complete')
+    // })
   },
 
   /**
