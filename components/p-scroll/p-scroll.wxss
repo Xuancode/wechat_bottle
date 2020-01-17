@@ -31,3 +31,28 @@
 .text_content {
   color: #999;
 }
+
+/*  推荐列表 */
+.avatar {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 10% 10%;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 10rpx;
+}
+.avatar image{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+ /* 我的列表 */
+.add_list {
+  position: fixed;
+  bottom: 200rpx;
+  right: 50rpx;
+}
+.add_list image {
+  width: 100rpx;
+  height: 100rpx;
+}

@@ -20,6 +20,9 @@ Component({
   methods: {
     toConfirm() {
       this.triggerEvent('customevent')
+    },
+    toCancel() {
+      this.triggerEvent('leftevent')
     }
   }
 })

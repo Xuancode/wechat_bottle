@@ -1,10 +1,10 @@
 <!--pages/newList/newList.wxml-->
 <view class="new_list">
-  <head-form bindcustomevent="announce"></head-form>
+  <head-form bindcustomevent="announce" bindleftevent="backRouter"></head-form>
   <view class="inner_view">
     <view class="input_area">
       <textarea 
-        bindblur="" 
+        bindblur="saveValue" 
         placeholder="来吧，尽情发挥吧..." 
         auto-focus
         cursor-spacing="30"
@@ -14,8 +14,12 @@
     </view>
     <view class="img_content">
       <view class="line"></view>
-      <image wx:for="{{upImg}}" class="up_img" src="{{item}}" wx:key="key"></image>
-      <image class="up_img img_btn" bindtap="getPhoto" src="/img/icon/upImg.png"></image>
+      <view class="img_box" wx:for="{{upImg}}" wx:key="index">
+        <image class="delete_img" bindtap="deleteImg" data-deleteindex="{{index}}" src="../../img/icon/delete2.png"></image>
+        <image bindtap="showPic" data-imgIndex="{{index}}" class="up_img" src="{{item}}"></image>
+      </view>
+      
+      <image wx:if="{{upImg.length < imgMaxLength}}" class="up_img img_btn" bindtap="getPhoto" src="/img/icon/upImg.png"></image>
     </view>
   </view>
 </view>

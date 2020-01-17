@@ -33,8 +33,21 @@
 .up_img {
   width: 190rpx;
   height: 190rpx;
-  margin-right: 15rpx;
 }
 .img_btn {
 
+}
+.img_box {
+  width: 190rpx;
+  height: 190rpx;
+  position: relative;
+  display: inline-block;
+  margin-right: 15rpx;
+}
+.delete_img {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

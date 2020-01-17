@@ -1,5 +1,5 @@
 <!--components/head-form/head-form.wxml-->
 <view class="head_form">
-  <text class="cancel">取消</text>
+  <text class="cancel" bindtap="toCancel">取消</text>
   <text type="primary" size="mini" bindtap="toConfirm" class="confirm">发表</text>
 </view>

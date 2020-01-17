@@ -32,10 +32,6 @@
 							<view class="des">{{item.description}}</view>
 						</view>
 					</view> -->
-          <button
-            open-type="getUserInfo"
-            bindgetuserinfo="getUserInfo"
-          >吃了吗</button>
           <p-list listType="{{index}}"></p-list>
 				</view>
 		</scroll>

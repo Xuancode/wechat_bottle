@@ -1,9 +1,13 @@
 {
   "pages": [
-    "pages/newList/newList",
     "pages/index/index",
+    "pages/listDetail/listDetail",
+    "pages/newList/newList",
+    
+    
     "pages/logs/logs",
     "pages/personal/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

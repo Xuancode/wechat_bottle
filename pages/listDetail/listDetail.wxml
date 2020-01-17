@@ -1,0 +1,43 @@
+<!--pages/listDetail/listDetail.wxml-->
+
+<view class="list_Detail">
+
+  <!-- 用户区 -->
+  <view class="avatar">
+    <image src="{{listData.user.avatar}}"></image>
+  </view>
+  <view class="user_info">
+    <text class="nick_name {{listData.user.introduce ? '' : 'single_name'}}">{{listData.user.name}}</text>
+    <text class="introduce" wx:if="{{listData.user.introduce}}">{{listData.user.introduce}}</text>
+  </view>
+  <!-- <view class="line"></view> -->
+
+  <view class="user_content">
+    <text>{{listData.title}}</text>
+  </view>
+  <view class="ps_content">
+    <view class="img_box" wx:for="{{imgArr}}" wx:key="index">
+      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{item}}"></image>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="line"></view>
+  <!-- 作者区 -->
+  <view wx:if="{{listData.editor}}">
+    <view class="avatar">
+      <image src="{{listData.editor.avatar}}"></image>
+    </view>
+    <view class="user_info">
+      <text class="nick_name {{listData.editor.introduce ? '' : 'single_name'}}">{{listData.editor.name}}</text>
+      <text class="introduce" wx:if="{{listData.editor.introduce}}">{{listData.editor.introduce}}</text>
+    </view>
+    <view class="user_content">
+      <text>{{listData.comments[0].content}}</text>
+    </view>
+    <view class="ps_content">
+      <view class="img_box">
+        <image bindtap="showPic" data-imgs="{{[listData.comments[0].completed_img]}}" src="{{listData.comments[0].completed_img}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

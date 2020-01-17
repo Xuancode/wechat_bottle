@@ -34,11 +34,15 @@ class apis {
   }
 
   /**
-   * 推荐列表
+   * 列表
    */
   getList(type = 0, page = 1, size = 10) {
     let data = { type: type, page: page, size: size }
     return this._request.$get(this._baseUrl + 'api/v1/list', data).then(res => res.data)
+  }
+  // 新增请求
+  addComment(data) {
+    return this._request.$post(this._baseUrl + 'api/v1/list', data).then(res => res.data)
   }
 
   /**
@@ -52,9 +56,6 @@ class apis {
   /**
    * 获取所有课程
    */
-  getCourseList(page = 1, size = 10, key = null) {
-    let data = key != null ? { page: page, size: size, queryValue: key } : { page: page, size: size }
-    return this._request.$get(this._baseUrl + '/course/mobile', data).then(res => res.data)
-  }
+
 }
 export default apis
