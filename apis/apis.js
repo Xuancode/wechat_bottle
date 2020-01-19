@@ -40,8 +40,13 @@ class apis {
     let data = { type: type, page: page, size: size }
     return this._request.$get(this._baseUrl + 'api/v1/list', data).then(res => res.data)
   }
-  // 新增请求
+  // 新增评论
   addComment(data) {
+    const {content, parents_id, list_id, imgs, is_editor} = data
+    return this._request.$post(this._baseUrl + 'api/v1/comment', data).then(res => res.data)
+  }
+  // 新增提问条目
+  addList(data) {
     return this._request.$post(this._baseUrl + 'api/v1/list', data).then(res => res.data)
   }
 

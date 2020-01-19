@@ -4,7 +4,7 @@
 
   <!-- 用户区 -->
   <view class="avatar">
-    <image src="{{listData.user.avatar}}"></image>
+    <image src="{{obs + listData.user.avatar}}"></image>
   </view>
   <view class="user_info">
     <text class="nick_name {{listData.user.introduce ? '' : 'single_name'}}">{{listData.user.name}}</text>
@@ -17,7 +17,7 @@
   </view>
   <view class="ps_content">
     <view class="img_box" wx:for="{{imgArr}}" wx:key="index">
-      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{item}}"></image>
+      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{obs + item}}"></image>
     </view>
   </view>
   <!-- 分割线 -->
@@ -25,7 +25,7 @@
   <!-- 作者区 -->
   <view wx:if="{{listData.editor}}">
     <view class="avatar">
-      <image src="{{listData.editor.avatar}}"></image>
+      <image src="{{obs + listData.editor.avatar}}"></image>
     </view>
     <view class="user_info">
       <text class="nick_name {{listData.editor.introduce ? '' : 'single_name'}}">{{listData.editor.name}}</text>
@@ -36,8 +36,13 @@
     </view>
     <view class="ps_content">
       <view class="img_box">
-        <image bindtap="showPic" data-imgs="{{[listData.comments[0].completed_img]}}" src="{{listData.comments[0].completed_img}}"></image>
+        <image bindtap="showPic" data-imgs="{{[listData.comments[0].completed_img]}}" src="{{obs + listData.comments[0].completed_img}}"></image>
       </view>
     </view>
+  </view>
+
+  <!-- 回复区 -->
+  <view class="reply" bindtap="toReply">
+    <button>都走开，让我来！</button>
   </view>
 </view>

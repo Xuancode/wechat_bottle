@@ -58,3 +58,17 @@
   width: 100%;
   
 }
+.reply {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #eee;
+  width: 100%;
+  height: 100rpx;
+}
+.reply button {
+  width: 100%;
+  vertical-align: center;
+  line-height: 100rpx;
+  height: 100%;
+}

@@ -1,5 +1,6 @@
 // pages/newList/newList.js
-const qiniuUploader = require("../../utils/qiniuUploader");
+const qiniuUploader = require("../../utils/qiniuUploader")
+const {regeneratorRuntime} = global
 const app = getApp()
 // qiniuUploader.init()
 Page({
@@ -12,7 +13,11 @@ Page({
     // upImg: [],
     textareaValue: '',
     imgMaxLength: 6,
-    loadingTimer: null
+    loadingTimer: null,
+    listType: 2,
+    parentsID: 0, // 增加评论时需要父id
+    listID: 0,  // 增加评论时需要listid
+    listEditorID: 0,
 
   },
 
@@ -62,6 +67,7 @@ Page({
       }
     })
   },
+  // 表单验证
   validate() {
     if (this.data.textareaValue.length == 0) {
       wx.showToast({
@@ -79,7 +85,7 @@ Page({
       return true
     }
   },
-  announce() {
+  async announce() {
     if (this.validate()) {
       return
     }
@@ -89,30 +95,40 @@ Page({
     })
     this.data.loadingTimer = setTimeout(()=> {
       wx.hideLoading()
-    }, 5000)
-
-    this.upLoadImg(this.data.upImg, wx.getStorageSync('qiNiuToken')).then( res => {
-      let data = {
-        title: this.data.textareaValue,
-        src_img: res[0],
-        side_imgs: res.join(',')
+    }, 10000)
+    try {
+      const upRes = await this.upLoadImg(this.data.upImg, wx.getStorageSync('qiNiuToken'))
+      if (this.data.listType == null) {
+        // 新增list时候使用的数据
+        let listData = {
+          title: this.data.textareaValue,
+          src_img: upRes[0],
+          side_imgs: upRes.join(','),
+          listType: this.data.listType
+        }
+        const resData = await app.apis.addList(listData)
+      } else {
+        // 新增comment时候使用的数据
+        let uid = JSON.parse(wx.getStorageSync('user_info')).id
+        let commentData = {
+          content: this.data.textareaValue,
+          parents_id: this.data.parentsID,
+          list_id: this.data.listID,
+          imgs: upRes.join(','),
+          is_editor: this.data.listEditorID == uid ? 1 : 0
+        }
+        const resData = await app.apis.addComment(commentData)
       }
-      console.log(res)
-      app.apis.addComment(data).then( res=> {
-        wx.hideLoading()
-        clearTimeout(this.data.loadingTimer)
-        this.backRouter()
-        console.log(res)
-      }, err => {
-        wx.hideLoading()
-        clearTimeout(this.data.loadingTimer)
-        this.errorImgTip()
-        console.log(err)
-      })
-    }, err => {
+
       wx.hideLoading()
+      clearTimeout(this.data.loadingTimer)
+      this.backRouter()
+    } catch (err) {
+      wx.hideLoading()
+      clearTimeout(this.data.loadingTimer)
+      this.errorImgTip()
       console.log(err)
-    })
+    }
   },
   backRouter() {
     wx.switchTab({
@@ -173,7 +189,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    this.setData({
+      listType: options.listType || 2,
+      parentsID: options.parentsID || 0,
+      listID: options.listID || 0,
+      listEditorID: options.listEditorID || 0,
+    })
   },
 
   /**

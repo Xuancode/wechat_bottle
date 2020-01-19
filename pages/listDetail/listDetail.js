@@ -6,7 +6,8 @@ Page({
    */
   data: {
     listData: {},
-    imgArr: []
+    imgArr: [],
+    obs: 'http://q3zie9bz3.bkt.clouddn.com/'
   },
 
   /**
@@ -22,7 +23,6 @@ Page({
       imgArr: arr
     })
     
-    console.log(this.data.imgArr)
     console.log(this.data.imgArr)
   },
 
@@ -40,6 +40,18 @@ Page({
         urls: e.currentTarget.dataset.imgs
       })
     }    
+  },
+  toReply() {
+    wx.navigateTo({
+      url: `/pages/newList/newList?listType=0&parentsID=0&listID=${this.data.listData.id}&listEditorID=${this.data.listData.user_id}`,
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+      complete: function (res) { },
+    })
   },
 
   /**

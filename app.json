@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/listDetail/listDetail",
     "pages/newList/newList",
+    "pages/listDetail/listDetail",
+    "pages/index/index",
+    
+    
     
     
     "pages/logs/logs",

@@ -3,16 +3,16 @@
 <view class="scroll_view">
   <!-- 求p部分 -->
   <view wx:if="{{listType == 1}}">
-    <view class="li" wx:for="{{data_list}}" bindtap="refresh" wx:key="key">
+    <view class="li" wx:for="{{data_list}}" bindtap="showList" data-item="{{item}}" wx:key="key">
       <view>
         <text class="text_title">{{item.title}}</text>    
       </view>
      
-      <view class="editor" wx:if="{{item.editor && item.editor.name}}">
-        <view class="avatar">
-          <image src="{{obs + item.editor.avatar}}"></image>
+      <view class="editor" wx:if="{{item.user && item.user.name}}">
+        <!-- <view class="avatar">
+          <image src="{{obs + item.user.avatar}}"></image>
         </view>
-        <text class="nick_name">{{item.editor.name}}:</text>
+        <text class="nick_name">{{item.user.name}}</text> -->
         <text class="text_content">{{item.comments.content}}</text>
       </view>
 
@@ -52,16 +52,12 @@
     <view class="add_list">
       <image bindtap="addList" src="/img/icon/addto.png"></image>
     </view>
-    <view class="li" wx:for="{{data_list}}" bindtap="refresh" wx:key="key">
+    <view class="li" wx:for="{{data_list}}" bindtap="showList" data-item="{{item}}" wx:key="key">
       <view>
         <text class="text_title">{{item.title}}</text>    
       </view>
      
-      <view class="editor" wx:if="{{item.editor && item.editor.name}}">
-        <view class="avatar">
-          <image src="{{obs + item.editor.avatar}}"></image>
-        </view>
-        <text class="nick_name">{{item.editor.name}}:</text>
+      <view class="editor" wx:if="{{item.user && item.user.name}}">
         <text class="text_content">{{item.comments.content}}</text>
       </view>
 

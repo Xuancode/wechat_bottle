@@ -1,6 +1,8 @@
 //app.js
 
 import apis from './apis/apis.js'
+global.regeneratorRuntime = require('./utils/runtime.js') // 兼容es7的 async, 需要的页面还要单独定义
+// require("./utils/regenerator-runtime/runtime")
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -14,18 +16,13 @@ App({
         // console.log(res.code)
         
         this.apis.login({ wxcode: res.code}).then(res => {
+          console.log(res)
           // 存储token
           wx.setStorage({
             "key": 'ps_token',
             "data": res.data.token,
-            success: res => {
-              // console.log(res)
-            },
-            fail: (err) => {
-              // console.log(err)
-            }
           })
-          console.log(res.data.qiNiuToken)
+          wx.setStorageSync('user_info', JSON.stringify(res.data.user_info))
           wx.setStorageSync('qiNiuToken', res.data.qiNiuToken)
         }).catch(err => {
           // console.log(err)
