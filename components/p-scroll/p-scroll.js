@@ -39,7 +39,7 @@ Component({
         this.setData({
           data_list: res.data
         })
-        console.log(this.data.data_list)
+        // console.log(this.data.data_list)
       })
     }
   },

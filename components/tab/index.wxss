@@ -2,6 +2,7 @@
   width: 100%;
   height: 90rpx;
   overflow: hidden;
+  box-shadow: 0 5rpx 10rpx 0 #eee;
 }
 
 .tabs-wrap {

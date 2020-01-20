@@ -99,7 +99,7 @@ Component({
 		 * 监听数据变化, 如果改变重新初始化参数
 		 */
 		dataChange(newVal, oldVal) {
-      console.log(newVal)
+      // console.log(newVal)
 			this.setData({
 				scrolling: false
 			});

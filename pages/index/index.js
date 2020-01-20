@@ -14,7 +14,7 @@ Page({
 		duration: 300,  // swiper-item 切换过渡时间
 		showPage: -1, // 控制列表空状态的显示时机
 		categoryCur: 0,
-		categoryMenu: ["推荐", "求P", "我的"],
+		categoryMenu: ["推荐", "求P", "我发起的"],
 		categoryData: [
 			{
 				name: "推荐",
@@ -42,6 +42,12 @@ Page({
 			}
 		]
 	},
+  onPullDownRefresh(e) {
+    console.log(e)
+  },
+  onReachBottom(e) {
+    console.log(e)
+  },
 	getList(type, currentPage) {
 		// let currentCur = this.data.categoryCur;
 
@@ -134,10 +140,6 @@ Page({
       windowHeight: app.globalData.windowHeight,
       statusBarHeight: app.globalData.statusBarHeight,
     })
-    console.log('navHeight', this.data.navHeight)
-    console.log('navTop', this.data.navTop)
-    console.log('windowHeight', this.data.windowHeight)
-    console.log('statusBarHeight', this.data.statusBarHeight)
     
     // wx.request({
     //   url: this.globalData.hostPort + '/api/v1/session',

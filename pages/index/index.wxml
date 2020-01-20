@@ -21,7 +21,7 @@
 
 <!-- 三段滑块 -->
 <swiper current="{{categoryCur}}" duration="{{duration}}" bindanimationfinish="swipeChange">
-	<swiper-item wx:for="{{categoryData}}" wx:key="index">
+	<swiper-item wx:for="{{categoryData}}" wx:key="index" style="overflow: scroll">
 		<scroll requesting="{{item.requesting}}"
 				end="{{item.end}}"
 				empty-show="{{item.emptyShow}}"
@@ -30,10 +30,10 @@
 				refresh-size="{{80}}"
 				bind:refresh="refresh"
 				bind:more="more">
-				<view class="cells" 
+				<!-- <view class="cells" 
           open-type="getUserInfo"
           bindgetuserinfo="getUserInfo"
-        >
+        > -->
 					<!-- <view class="cell"
 						  wx:for="{{item.listData}}"
 						  wx:key="{{index}}">
@@ -45,7 +45,7 @@
 						</view>
 					</view> -->
           <p-list listType="{{index}}"></p-list>
-				</view>
+				<!-- </view> -->
 		</scroll>
 	</swiper-item>
 </swiper>

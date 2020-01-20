@@ -36,12 +36,6 @@ Component({
 			type: Boolean,
 			value: false
 		},
-		// 下拉刷新的高度
-		refreshSize: {
-			type: Number,
-			value: 90,
-			observer: 'refreshChange'
-		},
 		// 底部高度
 		bottomSize: {
 			type: Number,
@@ -78,6 +72,8 @@ Component({
 		 * 处理 bindscrolltolower 失效情况
 		 */
 		scroll(e) {
+      console.log(e)
+      console.log(222)
 			// 可以触发滚动表示超过一屏
 			this.setData({
 				overOnePage: true
@@ -136,6 +132,7 @@ Component({
 		 * 加载更多
 		 */
 		more() {
+      console.log(333)
 			if (!this.properties.end) {
 				this.setData({
 					mode: 'more'
@@ -183,31 +180,33 @@ Component({
 		/**
 		 * 监听下拉刷新高度变化, 如果改变重新初始化参数, 最小高度80rpx
 		 */
-		refreshChange(newVal, oldVal) {
-			if (newVal <= 80) {
-				this.setData({
-					refreshSize: 80
-				});
-			}
-			// 异步加载数据时候, 延迟执行 init 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
-			setTimeout(() => this.init(), 10);
-		},
+		// refreshChange(newVal, oldVal) {
+    //   console.log(newVal)
+    //   console.log(oldVal)
+		// 	if (newVal <= 80) {
+		// 		this.setData({
+		// 			refreshSize: 0
+		// 		});
+		// 	}
+		// 	// 异步加载数据时候, 延迟执行 init 方法, 防止基础库 2.7.1 版本及以下无法正确获取 dom 信息
+		// 	setTimeout(() => this.init(), 10);
+		// },
 		/**
 		 * 初始化scroll组件参数, 动态获取 下拉刷新区域 和 success 的高度
-		 */
-		init() {
-			let {windowWidth} = wx.getSystemInfoSync();
-			let successHeight = (windowWidth || 375) / 750 * 70;
+		//  */
+		// init() {
+		// 	let {windowWidth} = wx.getSystemInfoSync();
+		// 	let successHeight = (windowWidth || 375) / 750 * 70;
 
-			this.createSelectorQuery().select("#refresh").boundingClientRect((res) => {
-				this.setData({
-					scrollHeight1: -res.height,
-					scrollHeight2: successHeight - res.height
-				});
-			}).exec();
-		},
+		// 	this.createSelectorQuery().select("#refresh").boundingClientRect((res) => {
+		// 		this.setData({
+		// 			scrollHeight1: -res.height,
+		// 			scrollHeight2: successHeight - res.height
+		// 		});
+		// 	}).exec();
+		// },
 	},
 	ready() {
-		this.init();
+		// this.init();
 	}
 });

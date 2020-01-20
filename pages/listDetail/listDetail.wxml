@@ -17,7 +17,7 @@
   <!-- 图片区 -->
   <view class="ps_content">
     <view class="img_box" wx:for="{{imgArr}}" wx:key="index">
-      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{obs + item}}" mode="aspectFit"></image>
+      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{obs + item}}" mode="widthFix"></image>
     </view>
   </view>
   <!-- 分割线 -->
@@ -37,7 +37,7 @@
     </view>
     <view class="ps_content">
       <view class="img_box" wx:for="{{item.answerImgArr}}" wx:for-item="imgUrl" wx:for-index="imgIndex" wx:key="imgIndex">
-        <image bindtap="showPic" data-index="{{imgIndex}}" data-imgs="{{item.answerImgArr}}"  src="{{obs + imgUrl}}" mode="aspectFit"></image>
+        <image bindtap="showPic" data-index="{{imgIndex}}" data-imgs="{{item.answerImgArr}}"  src="{{obs + imgUrl}}" mode="widthFix"></image>
       </view>
     </view>
     <!-- 分割线 -->

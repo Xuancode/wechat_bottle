@@ -6,7 +6,9 @@ console.log('token是', token)
 
 class apis {
   constructor() {
-    this._baseUrl = 'http://192.168.0.102:7001/' // 此处后续做环境区分
+    // this._baseUrl = 'http://192.168.0.102:7001/' // 此处后续做环境区分
+    // this._baseUrl = 'http://localhost:7001/' // 此处后续做环境区分
+    this._baseUrl = 'http://192.168.31.215:7001/' // 此处后续做环境区分
     this._request = new request
     this._request.setErrorHandler(this.errorHander)
     this._request._header = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
