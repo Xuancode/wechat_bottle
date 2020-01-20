@@ -1,3 +1,14 @@
+<!-- 自定义顶部 -->
+<view class="top_nav" style="height: {{navHeight}}px;">
+  <view class="top_bar" style="top: {{navTop}}px">
+    <view class="title">
+      <text>求P个图</text>
+    </view>
+  </view>
+  
+</view>
+
+<!-- tab -->
 <view class="top-wrap">
 	<tab id="category"
 		 tab-data="{{categoryMenu}}"
@@ -8,6 +19,7 @@
 	</tab>
 </view>
 
+<!-- 三段滑块 -->
 <swiper current="{{categoryCur}}" duration="{{duration}}" bindanimationfinish="swipeChange">
 	<swiper-item wx:for="{{categoryData}}" wx:key="index">
 		<scroll requesting="{{item.requesting}}"

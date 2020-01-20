@@ -10,6 +10,23 @@ App({
     logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
 
+    // 获取三个参数用于计算顶部导航位置
+    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    wx.getSystemInfo({
+      success: res => {
+        let statusBarHeight = res.statusBarHeight,
+        navTop = menuButtonObject.top,//胶囊按钮与顶部的距离
+        navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;//导航高度
+        this.globalData.navHeight = navHeight;
+        this.globalData.navTop = navTop;
+        this.globalData.windowHeight = res.windowHeight;
+        this.globalData.statusBarHeight = statusBarHeight
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
+
     // 登录
     wx.login({
       success: res => {
@@ -51,6 +68,7 @@ App({
         }
       }
     })
+    
     wx.getUserInfo({
       success: res => {
         // console.log(res)
@@ -60,10 +78,14 @@ App({
     })
   },
   apis: new apis(),
-
   globalData: {
     userInfo: null,
     currentTab: 0,
-    hostPort: 'http://localhost:7001'
+    hostPort: 'http://localhost:7001',
+    // 顶部导航三参数
+    navHeight: 0,
+    navTop: 0,
+    windowHeight: 0,
+    statusBarHeight: 0,
   }
 })

@@ -1,4 +1,5 @@
 // pages/listDetail/listDetail.js
+const app = getApp()
 Page({
 
   /**
@@ -7,14 +8,14 @@ Page({
   data: {
     listData: {},
     imgArr: [],
-    obs: 'http://q3zie9bz3.bkt.clouddn.com/'
+    obs: 'http://q3zie9bz3.bkt.clouddn.com/',
+    commentArr: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.data)
     let data = options.data
     data = JSON.parse(data)
     let arr = data.side_imgs.split(',')
@@ -22,22 +23,38 @@ Page({
       listData: data,
       imgArr: arr
     })
+    this.initComment(1, 1, 10, data.id || 2)
     
     console.log(this.data.imgArr)
   },
+  initComment(type, page, size, list_id) {
+    app.apis.getComment(type, page, size, list_id).then(res => {
+      console.log(res)
+      // 图片字符串转为数组
+      for (let i = 0; i < res.data.length; i++) {
+        res.data[i] = { ...res.data[i], ...{ answerImgArr: res.data[i].imgs.split(',') } }
+      }
+      this.setData({
+        commentArr: res.data
+      })
+    }, err => {
 
+    })
+  },
   showPic(e) {
-    // if (e.imgs || e.imgs.length >1) {
-      
-    // }
-    if (e.currentTarget.dataset && e.currentTarget.dataset.index) {
+    console.log(e)
+    let data = e.currentTarget.dataset
+    for (let i = 0; i < data.imgs.length; i++) {
+      data.imgs[i] = this.data.obs + data.imgs[i]
+    }
+    if (data && data.index) {
       wx.previewImage({
-        urls: e.currentTarget.dataset.imgs,
-        current: e.currentTarget.dataset.imgs[e.currentTarget.dataset.index]
+        urls: data.imgs,
+        current: data.imgs[data.index]
       })
     } else {
       wx.previewImage({
-        urls: e.currentTarget.dataset.imgs
+        urls: data.imgs
       })
     }    
   },

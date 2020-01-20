@@ -47,7 +47,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: #3F82FD;
+  background-color: #66c0f3;
   height: 4rpx;
   width: 0rpx;
   display: inline-block;

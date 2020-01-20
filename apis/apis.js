@@ -6,7 +6,7 @@ console.log('token是', token)
 
 class apis {
   constructor() {
-    this._baseUrl = 'http://localhost:7001/' // 此处后续做环境区分
+    this._baseUrl = 'http://192.168.0.102:7001/' // 此处后续做环境区分
     this._request = new request
     this._request.setErrorHandler(this.errorHander)
     this._request._header = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
@@ -44,6 +44,11 @@ class apis {
   addComment(data) {
     const {content, parents_id, list_id, imgs, is_editor} = data
     return this._request.$post(this._baseUrl + 'api/v1/comment', data).then(res => res.data)
+  }
+  // 获取评论
+  getComment(type = 0, page = 1, size = 10, list_id) {
+    let data = { type: type, page: page, size: size, list_id: list_id }
+    return this._request.$get(this._baseUrl + 'api/v1/comment', data).then(res => res.data)
   }
   // 新增提问条目
   addList(data) {

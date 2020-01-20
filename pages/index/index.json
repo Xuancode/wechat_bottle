@@ -4,5 +4,6 @@
 		"tab": "../../components/tab/index",
 		"scroll": "../../components/scroll/index",
     "p-list": "../../components/p-scroll/p-scroll"
-	}
+	},
+  "navigationStyle": "custom"
 }

@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/newList/newList",
     "pages/listDetail/listDetail",
-    "pages/index/index",
+    
     
     
     
@@ -15,14 +16,14 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "求P图小程序",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "backgroundColor": "#f7f7f7"
   },
   "tabBar": {
     "color": "#cbcbcb",
     "selectedColor": "#8a0b02",
     "borderStyle": "black",
-    "backgroundColor": "#f7f7f7",
+    "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",

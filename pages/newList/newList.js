@@ -98,7 +98,7 @@ Page({
     }, 10000)
     try {
       const upRes = await this.upLoadImg(this.data.upImg, wx.getStorageSync('qiNiuToken'))
-      if (this.data.listType == null) {
+      if (this.data.listType == 2) {
         // 新增list时候使用的数据
         let listData = {
           title: this.data.textareaValue,

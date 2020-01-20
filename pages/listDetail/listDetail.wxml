@@ -4,45 +4,53 @@
 
   <!-- 用户区 -->
   <view class="avatar">
-    <image src="{{obs + listData.user.avatar}}"></image>
+    <image src="{{listData.user.avatar ? obs + listData.user.avatar : ''}}"></image>
   </view>
   <view class="user_info">
     <text class="nick_name {{listData.user.introduce ? '' : 'single_name'}}">{{listData.user.name}}</text>
     <text class="introduce" wx:if="{{listData.user.introduce}}">{{listData.user.introduce}}</text>
   </view>
-  <!-- <view class="line"></view> -->
-
+  <!-- 文字区 -->
   <view class="user_content">
     <text>{{listData.title}}</text>
   </view>
+  <!-- 图片区 -->
   <view class="ps_content">
     <view class="img_box" wx:for="{{imgArr}}" wx:key="index">
-      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{obs + item}}"></image>
+      <image bindtap="showPic" data-index="{{index}}" data-imgs="{{imgArr}}" src="{{obs + item}}" mode="aspectFit"></image>
     </view>
   </view>
   <!-- 分割线 -->
   <view class="line"></view>
-  <!-- 作者区 -->
-  <view wx:if="{{listData.editor}}">
+
+  <!-- 回复区 -->
+  <view wx:if="{{commentArr.length > 0}}" wx:for="{{commentArr}}" wx:key="index">
     <view class="avatar">
-      <image src="{{obs + listData.editor.avatar}}"></image>
+      <image src="{{obs + item.user.avatar}}"></image>
     </view>
     <view class="user_info">
-      <text class="nick_name {{listData.editor.introduce ? '' : 'single_name'}}">{{listData.editor.name}}</text>
-      <text class="introduce" wx:if="{{listData.editor.introduce}}">{{listData.editor.introduce}}</text>
+      <text class="nick_name {{item.user.introduce ? '' : 'single_name'}}">{{item.user.name}}</text>
+      <text class="introduce" wx:if="{{item.user.introduce}}">{{item.user.introduce}}</text>
     </view>
     <view class="user_content">
-      <text>{{listData.comments[0].content}}</text>
+      <text>{{item.content}}</text>
     </view>
     <view class="ps_content">
-      <view class="img_box">
-        <image bindtap="showPic" data-imgs="{{[listData.comments[0].completed_img]}}" src="{{obs + listData.comments[0].completed_img}}"></image>
+      <view class="img_box" wx:for="{{item.answerImgArr}}" wx:for-item="imgUrl" wx:for-index="imgIndex" wx:key="imgIndex">
+        <image bindtap="showPic" data-index="{{imgIndex}}" data-imgs="{{item.answerImgArr}}"  src="{{obs + imgUrl}}" mode="aspectFit"></image>
       </view>
     </view>
+    <!-- 分割线 -->
+    <view class="line"></view>
+  </view>
+  <!-- 没有回复的时候显示图片 -->
+  <view class="no_reply" wx:if="{{commentArr.length == 0}}" >
+    <image src="/img/icon/ps_logo.png"></image>
   </view>
 
   <!-- 回复区 -->
   <view class="reply" bindtap="toReply">
+    <image src="/img/icon/lets.png"></image>
     <button>都走开，让我来！</button>
   </view>
 </view>

@@ -1,8 +1,36 @@
 page {
   background-color: #f7f7f7;
 }
+
+/* 顶部bar，后续有时间考虑封装 */
+.top_nav {
+  height: 200rpx;
+  background-color: rgb(139, 193, 243);
+  position: relative;
+  /* background-color: #f81a1a; */
+  /* border: 2rpx solid #b0dffa */
+}
+.top_bar {
+  /* background-color: pink; */
+  position: absolute;
+  height: 32px;
+  width: 100%;
+}
+.title {
+  text-align: center
+}
+.title text {
+  display: inline-block;
+  font-size: 40rpx;
+  color: #fff;
+  line-height: 32px;
+}
+
+
+
+
 .top-wrap {
-  position: fixed;
+  position: relative;
   left: 0;
   top: 0;
   width: 100%;

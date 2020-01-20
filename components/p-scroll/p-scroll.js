@@ -25,10 +25,21 @@ Component({
     ready() {
       
       app.apis.getList(this.data.typeTable[this.properties.listType], 1, 10).then(res => {
+        // 推荐部分处理图片字符串转为数组
+        if (this.data.typeTable[this.properties.listType] == 1) {
+          for (let i = 0; i < res.data.length; i++) {
+            res.data[i] = { ...res.data[i], ...{ answerImgArr: res.data[i].comments[0].imgs.split(',') } }
+          }
+        } else {
+          for (let i = 0; i < res.data.length; i++) {
+            res.data[i] = { ...res.data[i], ...{ askImgArr: res.data[i].side_imgs.split(',') } }
+          }
+        }
+        
         this.setData({
           data_list: res.data
         })
-        console.log(res.data)
+        console.log(this.data.data_list)
       })
     }
   },
@@ -37,7 +48,6 @@ Component({
    */
   methods: {
     addList(){
-      console.log(999)
       wx.navigateTo({
         url: '/pages/newList/newList',
         success: function(res) {

@@ -5,6 +5,12 @@ let pageSize = 15;
 
 Page({
 	data: {
+    // 顶部导航三参数
+    navHeight: 0,
+    navTop: 0,
+    windowHeight: 0,
+    statusBarHeight: 0,
+
 		duration: 300,  // swiper-item 切换过渡时间
 		showPage: -1, // 控制列表空状态的显示时机
 		categoryCur: 0,
@@ -122,8 +128,17 @@ Page({
 	},
 	onLoad() {
 
+    this.setData({
+      navHeight: app.globalData.navHeight,
+      navTop: app.globalData.navTop,
+      windowHeight: app.globalData.windowHeight,
+      statusBarHeight: app.globalData.statusBarHeight,
+    })
+    console.log('navHeight', this.data.navHeight)
+    console.log('navTop', this.data.navTop)
+    console.log('windowHeight', this.data.windowHeight)
+    console.log('statusBarHeight', this.data.statusBarHeight)
     
-
     // wx.request({
     //   url: this.globalData.hostPort + '/api/v1/session',
     //   data: {
