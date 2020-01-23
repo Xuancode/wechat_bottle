@@ -3,7 +3,8 @@
 	"usingComponents": {
 		"tab": "../../components/tab/index",
 		"scroll": "../../components/scroll/index",
-    "p-list": "../../components/p-scroll/p-scroll"
+    "p-list": "../../components/p-scroll/p-scroll",
+    "top-nav": "../../components/top-nav/top-nav"
 	},
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white"

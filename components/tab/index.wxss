@@ -1,6 +1,7 @@
+/* tab 的高度固定80rpx，不改 */
 .scroll-view {
   width: 100%;
-  height: 90rpx;
+  height: 80rpx;  
   overflow: hidden;
   box-shadow: 0 5rpx 10rpx 0 #eee;
 }
@@ -11,7 +12,7 @@
 
 .tabs {
   position: relative;
-  height: 90rpx;
+  height: 80rpx;
   color: #999;
   display: flex;
   text-align: center;
@@ -32,8 +33,8 @@
 .tabs__item {
   flex: 1;
   text-align: center;
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   padding: 0 80rpx;
   box-sizing: border-box;
   transition: color 0.3s ease-in-out;

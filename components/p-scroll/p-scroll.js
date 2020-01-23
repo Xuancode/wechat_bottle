@@ -19,13 +19,28 @@ Component({
   data: {
     data_list: [],
     typeTable: [1, 0, 2],    // tabIndex对应listType的关系
-    obs: 'http://q3zie9bz3.bkt.clouddn.com/'
+    obs: 'http://q3zie9bz3.bkt.clouddn.com/',
+    page: 1
   },
   lifetimes: {
     ready() {
+      this.getData(this.data.page, 10)
       
-      app.apis.getList(this.data.typeTable[this.properties.listType], 1, 10).then(res => {
-        // 推荐部分处理图片字符串转为数组
+    }
+  },
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    moreList(val) {
+      // console.log('更多内')
+      this.triggerEvent('loadStatus', 'loading')
+      this.getData(this.data.page, 10)
+    },
+    getData(page, size) {
+      console.log( '页码',this.data.page)
+      app.apis.getList(this.data.typeTable[this.properties.listType], page, size).then(res => {
+        // 处理图片字符串转为数组，推荐命名为answerImgArr， 其他命名为askImgArr
         if (this.data.typeTable[this.properties.listType] == 1) {
           for (let i = 0; i < res.data.length; i++) {
             res.data[i] = { ...res.data[i], ...{ answerImgArr: res.data[i].comments[0].imgs.split(',') } }
@@ -35,18 +50,22 @@ Component({
             res.data[i] = { ...res.data[i], ...{ askImgArr: res.data[i].side_imgs.split(',') } }
           }
         }
-        
+        // 初始化或拼接数据
         this.setData({
-          data_list: res.data
+          data_list: this.data.data_list.length > 0 ? [...this.data.data_list, ...res.data] : res.data
         })
-        // console.log(this.data.data_list)
+
+        // 判断是否还有剩余页码
+        if (this.data.page === res.meta.pagination.total_pages) {
+          console.log('no了吧')
+          this.triggerEvent('pageStatus', 'no')
+        } else {
+          this.data.page++ 
+        }
+        
+        // this.set(this.data.data_list)
       })
-    }
-  },
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+    },
     addList(){
       wx.navigateTo({
         url: '/pages/newList/newList',

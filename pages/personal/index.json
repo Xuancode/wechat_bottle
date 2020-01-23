@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "top-nav": "../../components/top-nav/top-nav"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white"
 }

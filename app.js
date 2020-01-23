@@ -33,7 +33,6 @@ App({
         // console.log(res.code)
         
         this.apis.login({ wxcode: res.code}).then(res => {
-          console.log(res)
           // 存储token
           wx.setStorage({
             "key": 'ps_token',

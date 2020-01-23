@@ -49,6 +49,8 @@ Component({
       console.log(e)
 			this.triggerEvent('change', {index: e.currentTarget.dataset.index});
 			this.scrollByIndex(e.currentTarget.dataset.index);
+      this.getTabHight()
+      // this.triggerEvent('getheight1')
 		},
 		/**
 		 * 滑动到指定位置
@@ -56,7 +58,6 @@ Component({
 		 * @param needTransition: 下划线是否需要过渡动画, 第一次进来应设置为false
 		 */
 		scrollByIndex(tabCur, needTransition = true) {
-      console.log(tabCur)
       // if (tabCur ==2) {
       //   console.log(tabCur)
       //   wx.navigateTo({
@@ -134,9 +135,22 @@ Component({
 				});
 				this.scrollByIndex(this.data.tabCur, false);
 			}).exec();
-		}
+		},
+    // 获取tab的高度给与页面计算scroll的高度
+    getTabHight() {
+      setTimeout(()=> {
+        const query = this.createSelectorQuery()
+        query.select('.scroll-view').boundingClientRect(res => {
+          this.triggerEvent('countScrollH', {h: res.height})
+        }, err => {
+          console.log(err)
+        }).exec()
+      }, 100) 
+    }
 	},
 	ready() {
 		this.init();
+    
+    this.getTabHight()
 	}
 });

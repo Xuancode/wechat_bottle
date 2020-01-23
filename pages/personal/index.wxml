@@ -1,2 +1,19 @@
 <!--pages/personal.wxml-->
-<text>pages/personal.wxml</text>
+<view>
+  <top-nav titleName="个人中心"></top-nav>
+  <view class="top_nav"></view>
+  <view class="user_info">
+  
+  </view>
+  <view class="my_content">
+    <view>
+      求P记录
+    </view>
+    <view>
+      P图记录
+    </view>
+    <view>
+      我的身份
+    </view>
+  </view>
+</view>

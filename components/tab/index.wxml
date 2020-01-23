@@ -1,5 +1,5 @@
 <scroll-view class="scroll-view"
-  style="height: {{size}}rpx;"
+  id="ps_tab_bar"
   scroll-x="{{scrolling}}"
   scroll-with-animation="{{scrolling}}"
   scroll-left="{{scrollLeft}}">
