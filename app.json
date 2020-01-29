@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/personal/index",
     "pages/index/index",
     "pages/newList/newList",
     "pages/listDetail/listDetail",    
     
-    "pages/logs/logs",
-    "pages/personal/index"
+    "pages/logs/logs"
+    
     
   ],
   "window": {

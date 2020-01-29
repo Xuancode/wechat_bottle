@@ -81,6 +81,7 @@ App({
     userInfo: null,
     currentTab: 0,
     hostPort: 'http://localhost:7001',
+    qiNiuObs: 'http://q3zie9bz3.bkt.clouddn.com/',
     // 顶部导航三参数
     navHeight: 0,
     navTop: 0,

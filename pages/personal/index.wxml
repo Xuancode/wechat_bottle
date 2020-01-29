@@ -1,19 +1,36 @@
 <!--pages/personal.wxml-->
-<view>
+<view class="personal">
   <top-nav titleName="个人中心"></top-nav>
-  <view class="top_nav"></view>
   <view class="user_info">
-  
+    <view class="avatar">
+      <open-data wx:if="{{userAllow}}" type="userAvatarUrl"></open-data>
+      <image wx:elif="{{avatarUrl}}" class="avatar_img" src="{{obs + avatarUrl}}" mode="aspectFill"></image>
+    </view>
+    <view class="text_info">
+      <open-data wx:if="{{userAllow}}" type="userNickName" class="nick_name"></open-data>
+      <text wx:else class="nick_name">{{nickName}}</text>
+      <text class="introduce">{{introduce}}</text>
+    </view>
   </view>
   <view class="my_content">
-    <view>
-      求P记录
-    </view>
-    <view>
-      P图记录
-    </view>
-    <view>
-      我的身份
-    </view>
+    <navigator wx:for="{{caseData}}" wx:key="key" url="/pages/newList/newList" hover-class="navigator-hover">
+      <view class="case_li">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.text}}</text>
+        <image class="arrows" src="/img/icon/to.png"></image>
+      </view>
+    </navigator>
   </view>
+  <view class="my_content">
+    <button wx:for="{{helpData}}" wx:key="key" open-type="getUserInfo">
+      <navigator url="/pages/newList/newList" hover-class="navigator-hover">
+      <view class="case_li">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.text}}</text>
+        <image class="arrows" src="/img/icon/to.png"></image>
+      </view>
+      </navigator>
+    </button>
+  </view>
+  <button  open-type="getUserInfo">授权登录</button>
 </view>

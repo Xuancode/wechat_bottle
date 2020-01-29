@@ -1,6 +1,4 @@
-page {
-  background-color: #f7f7f7;
-}
+
 .index_page {
   position: fixed;
   left: 0;

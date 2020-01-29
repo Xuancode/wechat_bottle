@@ -26,8 +26,6 @@
 .nick_name {
   display: block;
   font-weight: 600;
-  display: block;
-  font-weight: 600;
 }
 .single_name {
   line-height: 75rpx;
