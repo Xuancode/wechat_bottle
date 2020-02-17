@@ -1,0 +1,11 @@
+<view class="scroll_view">
+  <view>
+    <view class="li" wx:for="{{data_list}}" bindtap="showList" data-item="{{item}}" wx:key="key">
+      <view class="text_title">
+        <text >{{item.title}}</text>    
+      </view>
+      <!-- 图片 -->
+      <image class="src_pics" src="{{ obs + item.askImgArr[0] + '~tinycut'}}"></image>
+    </view>
+  </view>
+</view>

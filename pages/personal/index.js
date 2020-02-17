@@ -11,12 +11,12 @@ Page({
       {
         icon: '/img/icon/lets.png',
         text: '求P记录',
-        navUrl: ''
+        navUrl: '/pages/personal/myReq'
       },
       {
         icon: '/img/icon/lets.png',
         text: 'P图记录',
-        navUrl: ''
+        navUrl: '/pages/personal/psList/psList?as=editor'
       },
       {
         icon: '/img/icon/lets.png',
@@ -45,13 +45,16 @@ Page({
     introduce: '',
     avatarUrl: '',
     obs: app.globalData.qiNiuObs,
-    userAllow: false
+    /** wechat用户信息 */
+    userAllow: false,
+    userInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取自定义系统的登录信息
     app.apis.getLoginStatus().then(res=> {
       this.setData({
         introduce: res.data.introduce,
@@ -60,6 +63,14 @@ Page({
       })
       console.log(res.data)
     })
+
+    // 获取全局的用户信息
+    if (app.globalData.userInfo) {
+      this.setData({
+        userAllow: true
+      })
+    }
+
   },
 
   /**

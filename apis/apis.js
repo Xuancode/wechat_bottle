@@ -36,7 +36,7 @@ class apis {
   }
 
   /**
-   * 列表
+   * 主页大类
    */
   getList(type = 0, page = 1, size = 10) {
     let data = { type: type, page: page, size: size }
@@ -56,6 +56,13 @@ class apis {
   addList(data) {
     return this._request.$post(this._baseUrl + 'api/v1/list', data).then(res => res.data)
   }
+
+  /**
+   * 个人中心大类
+   */
+  
+  /** 获取我回答的列表 */
+  // getMyCreation() {}
 
   /**
    * 获取qiniu云token

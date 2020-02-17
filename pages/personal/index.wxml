@@ -13,24 +13,24 @@
     </view>
   </view>
   <view class="my_content">
-    <navigator wx:for="{{caseData}}" wx:key="key" url="/pages/newList/newList" hover-class="navigator-hover">
-      <view class="case_li">
-        <image src="{{item.icon}}"></image>
-        <text>{{item.text}}</text>
-        <image class="arrows" src="/img/icon/to.png"></image>
-      </view>
-    </navigator>
+    <view class="case_li" wx:for="{{caseData}}" wx:key="key">
+        <!-- 未申请权限的时候button会遮盖选项 -->
+        <button wx-if="{{!userAllow}}" class="custom_button" open-type="getUserInfo"></button>
+        <navigator url="{{item.navUrl ? item.navUrl : '#'}}" hover-class="none">
+          <image src="{{item.icon}}"></image>
+          <text>{{item.text}}</text>
+          <image class="arrows" src="/img/icon/to.png"></image>
+        </navigator>
+    </view>
   </view>
   <view class="my_content">
-    <button wx:for="{{helpData}}" wx:key="key" open-type="getUserInfo">
-      <navigator url="/pages/newList/newList" hover-class="navigator-hover">
-      <view class="case_li">
-        <image src="{{item.icon}}"></image>
-        <text>{{item.text}}</text>
-        <image class="arrows" src="/img/icon/to.png"></image>
-      </view>
-      </navigator>
-    </button>
+    <view class="case_li" wx:for="{{helpData}}" wx:key="key">
+        <button class="custom_button" open-type="getUserInfo"></button>
+        <navigator url="#" hover-class="none">
+          <image src="{{item.icon}}"></image>
+          <text>{{item.text}}</text>
+          <image class="arrows" src="/img/icon/to.png"></image>
+        </navigator>
+    </view>
   </view>
-  <button  open-type="getUserInfo">授权登录</button>
 </view>

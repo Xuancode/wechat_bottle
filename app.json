@@ -1,13 +1,12 @@
 {
   "pages": [
-    "pages/personal/index",
+    "pages/personal/myReq",
     "pages/index/index",
+    
+    "pages/personal/index",
     "pages/newList/newList",
-    "pages/listDetail/listDetail",    
-    
+    "pages/listDetail/listDetail",
     "pages/logs/logs"
-    
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
