@@ -2,12 +2,12 @@
 
 import request from './request.js'
 let token = wx.getStorageSync('ps_token')
-console.log('token是', token)
 
 class apis {
   constructor() {
-    // this._baseUrl = 'http://192.168.0.102:7001/' // 此处后续做环境区分
-    this._baseUrl = 'http://localhost:7001/' // 此处后续做环境区分
+    // this._baseUrl = 'http://localhost:7001/' // 此处后续做环境区分
+    this._baseUrl = 'https://molitown.cn:8090/' // 此处后续做环境区分
+    
     // this._baseUrl = 'http://192.168.31.215:7001/' // 此处后续做环境区分
     this._request = new request
     this._request.setErrorHandler(this.errorHander)
@@ -39,7 +39,7 @@ class apis {
    * 主页大类
    */
   getList(type = 0, page = 1, size = 10) {
-    let data = { type: type, page: page, size: size }
+    let data = { type, page, size }
     return this._request.$get(this._baseUrl + 'api/v1/list', data).then(res => res.data)
   }
   // 新增评论
@@ -48,8 +48,8 @@ class apis {
     return this._request.$post(this._baseUrl + 'api/v1/comment', data).then(res => res.data)
   }
   // 获取评论
-  getComment(type = 0, page = 1, size = 10, list_id) {
-    let data = { type: type, page: page, size: size, list_id: list_id }
+  getComment(page = 1, size = 10, list_id = '') {
+    let data = { page, size, list_id }
     return this._request.$get(this._baseUrl + 'api/v1/comment', data).then(res => res.data)
   }
   // 新增提问条目

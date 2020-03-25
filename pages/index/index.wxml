@@ -1,53 +1,6 @@
-<!-- 自定义顶部 -->
-<view class="index_page">
-  <top-nav titleName="求P个图"></top-nav>
-  <!-- tab -->
-  <view class="top-wrap">
-    <tab id="category"
-      tab-data="{{categoryMenu}}"
-      tab-cur="{{categoryCur}}"
-      size="{{80}}"
-      scroll="{{true}}"
-      bindchange="toggleCategory"
-      bindcountScrollH="countScrollH"
-      tabHeight="tabHeight"
-    >
-      
-    </tab>
+<!--index.wxml-->
+<view class="container">
+  <view wx:if="{{webviewReady}}" bindtap="heheda" class="page-section page-section-gap">
+    <web-view bindtap="heheda" src="{{'https://molitown.cn/#/?token='+ jwt}}"></web-view>
   </view>
-
-  <!-- 三段滑块 -->
-  <swiper current="{{categoryCur}}" duration="{{duration}}" bindanimationfinish="swipeChange">
-    <swiper-item class="memeji" wx:for="{{categoryData}}" wx:key="index" style="overflow: scroll">
-      <scroll requesting="{{item.requesting}}"
-          end="{{item.end}}"
-          empty-show="{{item.emptyShow}}"
-          list-count="{{item.listData.length}}"
-          has-top="{{true}}"
-          refresh-size="{{80}}"
-          bind:refresh="refresh"
-          bind:more="more"
-          scrollH="{{scrollH}}"
-          listType="{{index}}"
-      >
-          <!-- <view class="cells" 
-            open-type="getUserInfo"
-            bindgetuserinfo="getUserInfo"
-          > -->
-            <!-- <view class="cell"
-                wx:for="{{item.listData}}"
-                wx:key="{{index}}">
-              <view class="cell__hd">
-              </view>
-              <view class="cell__bd">
-                <view class="name">{{item.title}}</view>
-                <view class="des">{{item.description}}</view>
-              </view>
-            </view> -->
-            <!-- <p-list id="p_list" listType="{{index}}"></p-list> -->
-          <!-- </view> -->
-      </scroll>
-    </swiper-item>
-  </swiper>
-
 </view>

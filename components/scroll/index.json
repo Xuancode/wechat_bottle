@@ -1,6 +1,0 @@
-{
-	"component": true,
-	"usingComponents": {
-    "p-list": "../../components/p-scroll/p-scroll"
-  }
-}

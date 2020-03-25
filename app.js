@@ -11,40 +11,23 @@ App({
     // wx.setStorageSync('logs', logs)
 
     // 获取三个参数用于计算顶部导航位置
-    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
-    wx.getSystemInfo({
-      success: res => {
-        let statusBarHeight = res.statusBarHeight,
-        navTop = menuButtonObject.top,//胶囊按钮与顶部的距离
-        navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;//导航高度
-        this.globalData.navHeight = navHeight;
-        this.globalData.navTop = navTop;
-        this.globalData.windowHeight = res.windowHeight;
-        this.globalData.statusBarHeight = statusBarHeight
-      },
-      fail(err) {
-        console.log(err);
-      }
-    })
+    // let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    // wx.getSystemInfo({
+    //   success: res => {
+    //     let statusBarHeight = res.statusBarHeight,
+    //       navTop = menuButtonObject.top,//胶囊按钮与顶部的距离
+    //       navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;//导航高度
+    //     this.globalData.navHeight = navHeight;
+    //     this.globalData.navTop = navTop;
+    //     this.globalData.windowHeight = res.windowHeight;
+    //     this.globalData.statusBarHeight = statusBarHeight
+    //   },
+    //   fail(err) {
+    //     console.log(err);
+    //   }
+    // })
 
-    // 登录
-    wx.login({
-      success: res => {
-        // console.log(res.code)
-        
-        this.apis.login({ wxcode: res.code}).then(res => {
-          // 存储token
-          wx.setStorage({
-            "key": 'ps_token',
-            "data": res.data.token,
-          })
-          wx.setStorageSync('user_info', JSON.stringify(res.data.user_info))
-          wx.setStorageSync('qiNiuToken', res.data.qiNiuToken)
-        }).catch(err => {
-          // console.log(err)
-        })
-      }
-    })
+    
 
     // 获取用户信息
     wx.getSetting({
@@ -54,6 +37,7 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
+              console.log(res)
               this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -73,7 +57,7 @@ App({
     userInfo: null,
     currentTab: 0,
     hostPort: 'http://localhost:7001',
-    qiNiuObs: 'http://q3zie9bz3.bkt.clouddn.com/',
+    qiNiuObs: 'http://obs.molitown.cn/',
     // 顶部导航三参数
     navHeight: 0,
     navTop: 0,

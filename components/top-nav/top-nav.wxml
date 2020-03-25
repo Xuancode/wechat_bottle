@@ -1,8 +1,0 @@
-<!-- 顶部自定义nav -->
-<view class="top_nav" style="height: {{navHeight}}px;">
-  <view class="top_bar" style="top: {{navTop}}px">
-    <view class="title">
-      <text>{{titleName}}</text>
-    </view>
-  </view>
-</view>
