@@ -1,12 +1,14 @@
 // 把所有请求都集中在此处，对组件提供接口
 
 import request from './request.js'
+import {config} from '../config/config.js'
+
 let token = wx.getStorageSync('ps_token')
 
 class apis {
   constructor() {
     // this._baseUrl = 'http://localhost:7001/' // 此处后续做环境区分
-    this._baseUrl = 'https://molitown.cn:8090/' // 此处后续做环境区分
+    this._baseUrl = config.api // 此处后续做环境区分
     
     // this._baseUrl = 'http://192.168.31.215:7001/' // 此处后续做环境区分
     this._request = new request

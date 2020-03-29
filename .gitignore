@@ -16,3 +16,5 @@ node_modules/
 # 历史遗留问题
 样式案例/
 backup/
+
+config/

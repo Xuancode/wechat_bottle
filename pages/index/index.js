@@ -20,6 +20,7 @@ Page({
             "key": 'ps_token',
             "data": res.data.token,
           })
+          console.log(res.data.token)
           wx.setStorageSync('user_info', JSON.stringify(res.data.user_info))
           this.setData({
             webviewReady: true,
@@ -30,12 +31,17 @@ Page({
         })
       }
     })
+    
+    this.playBGM()
   },
 
-  getUserInfo(res) {
-    app.apis.getList({type: 0, page: 1, size: 10}).then( res=> {
-      console.log(res)
-    })
-  }
+  playBGM() {
+    const BGM = wx.getBackgroundAudioManager()
+    
+    BGM.title = 'my oasis'
+    BGM.epname = 'my oasis'
+    BGM.singer = 'my oasis'
+    BGM.src = 'https://molitown.cn/media/bgm.m4a'
+  } 
 });
 
